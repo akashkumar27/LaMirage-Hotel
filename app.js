@@ -102,7 +102,7 @@ passport.deserializeUser(function (user, cb) {
 passport.use(new GoogleStrategy({
   clientID: process.env.GCLIENT_ID,
   clientSecret: process.env.GCLIENT_SECRET,
-  callbackURL: "http://localhost:3000/auth/google/login"
+  callbackURL: "https://lamirage-240q.onrender.com/auth/google/login"
 },
   function (accessToken, refreshToken, profile, cb) {
     User.findOrCreate({ googleId: profile.id }, function (err, user) {
@@ -115,7 +115,7 @@ passport.use(new MicrosoftStrategy({
   // Standard OAuth2 options
   clientID: process.env.MCLIENT_ID,
   clientSecret: process.env.MCLIENT_SECRET,
-  callbackURL: "http://localhost:3000/auth/microsoft/login",
+  callbackURL: "https://lamirage-240q.onrender.com/auth/microsoft/login",
   scope: ['user.read'],
 },
   function (accessToken, refreshToken, profile, done) {
@@ -364,7 +364,7 @@ app.post("/forget-password", (req, res) => {
     from: process.env.USERNAME_O,
     to: req.body.username,
     subject: 'Reset password',
-    html: `<p>Click the button to reset the Password</p><br><form action="http://localhost:3000/type-password" method="POST"><input type="hidden" name="email" value="${req.body.username}" id="email"/><button type="submit">Reset Password</button></form>`
+    html: `<p>Click the button to reset the Password</p><br><form action="https://lamirage-240q.onrender.com/type-password" method="POST"><input type="hidden" name="email" value="${req.body.username}" id="email"/><button type="submit">Reset Password</button></form>`
   };
 
   transporter.sendMail(mailOptions, function (error, info) {
@@ -1003,6 +1003,6 @@ app.get("/", (req, res, next) => {
   res.render("common/landingpage.ejs")
 })
 
-app.listen(process.env.port || 3000, () => {
+app.listen(process.env.PORT || 3000, () => {
   console.log("Server is live");
 });
