@@ -1,0 +1,264 @@
+<%- include('partials/navbar') %>
+
+<!-- CSS -->
+<link rel="stylesheet" href="css/admin/home.css" />
+<%- include('partials/sidebar') %>
+  
+      <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+          <h1 class="h2">Dashboard</h1>
+        </div>
+
+      <div class="seaside">
+        <form action="/admin-update-room" method="post">
+          <div class="row room-rent">
+            <div class="col-md-4">
+              <h2>Sea Side</h2>
+            </div>
+            <div class="col-md-4">
+              <input type="hidden" name="type" value="Sea Side">
+              <input type="number" name="newRent" id="newRent" min="0" step="100" placeholder="New Rent" required>
+            </div>
+            <div class="col-md-4">
+              <button type="submit" class="btn btn-primary">
+                Update
+              </button>
+            </div>
+          </div>
+        </form>
+          <div class="row">
+            <% seaside.forEach((item) => { %>
+            <div class="col-md-4">
+              <div class="item" style="background-color: white">
+                <img src="images/sea-side.jpg" alt="sea-side" srcset="">
+                <div class="row">
+                  <div class="col-6">
+                    <p class="p field">Room id :</p>
+                  </div>
+
+                  <div class="col-6">
+                    <p class="p"><%=item.room_id%></p>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-6">
+                    <p class="p field">Rent per Day :</p>
+                  </div>
+
+                  <div class="col-6">
+                    <p class="p"><%=item.rentPerDay%></p>
+                  </div>
+                </div> 
+                <form
+                  action="/admin-delete-room"
+                  method="post"
+                  id="form"
+                  name="form"
+                  onsubmit="event.preventDefault(); handleClick();"
+                >
+                  <input type="hidden" name="id" value="<%= item._id %>" />
+                  <button type="submit" class="btn btn-danger">
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+              </form>
+              </div>
+            </div>
+            <% }); %>
+          </div>
+        </div>
+
+        <hr>
+
+        <div class="deluxe">
+          <form action="/admin-update-room" method="post">
+            <div class="row room-rent">
+              <div class="col-md-4">
+                <h2>Deluxe</h2>
+              </div>
+              <div class="col-md-4">
+                <input type="hidden" name="type" value="Deluxe">
+                <input type="number" name="newRent" id="newRent" min="0" step="100" placeholder="New Rent" required>
+              </div>
+              <div class="col-md-4">
+                <button type="submit" class="btn btn-primary">
+                  Update
+                </button>
+              </div>
+            </div>
+          </form>
+          <div class="row">
+            <% deluxe.forEach((item) => { %>
+            <div class="col-md-4">
+              <div class="item" style="background-color: white">
+                <img src="images/family-room.jpg" alt="deluxe" srcset="">
+                <div class="row">
+                  <div class="col-6">
+                    <p class="p field">Room id :</p>
+                  </div>
+
+                  <div class="col-6">
+                    <p class="p"><%=item.room_id%></p>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-6">
+                    <p class="p field">Rent per Day :</p>
+                  </div>
+
+                  <div class="col-6">
+                    <p class="p"><%=item.rentPerDay%></p>
+                  </div>
+                </div> 
+                <form
+                  action="/admin-delete-room"
+                  method="post"
+                  id="form"
+                  name="form"
+                  onsubmit="event.preventDefault(); handleClick();"
+                >
+                  <input type="hidden" name="id" value="<%= item._id %>" />
+                  <button type="submit" class="btn btn-danger">
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+              </form>
+              </div>
+            </div>
+            <% }); %>
+          </div>
+        </div>
+
+        <hr>
+
+        <div class="kingsize">
+          <form action="/admin-update-room" method="post">
+            <div class="row room-rent">
+              <div class="col-md-4">
+                <h2>King Size</h2>
+              </div>
+              <div class="col-md-4">
+                <input type="hidden" name="type" value="King Size">
+                <input type="number" name="newRent" id="newRent" min="0"  step="100" placeholder="New Rent" required>
+              </div>
+              <div class="col-md-4">
+                <button type="submit" class="btn btn-primary">
+                  Update
+                </button>
+              </div>
+            </div>
+          </form>
+          <div class="row">
+            <% kingsize.forEach((item) => { %>
+            <div class="col-md-4">
+              <div class="item" style="background-color: white">
+                <img src="images/king-size.jpg" alt="king-size" srcset="">
+                <div class="row">
+                  <div class="col-6">
+                    <p class="p field">Room id :</p>
+                  </div>
+
+                  <div class="col-6">
+                    <p class="p"><%=item.room_id%></p>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-6">
+                    <p class="p field">Rent per Day :</p>
+                  </div>
+
+                  <div class="col-6">
+                    <p class="p"><%=item.rentPerDay%></p>
+                  </div>
+                </div> 
+                <form
+                  action="/admin-delete-room"
+                  method="post"
+                  id="form"
+                  name="form"
+                  onsubmit="event.preventDefault(); handleClick();"
+                >
+                  <input type="hidden" name="id" value="<%= item._id %>" />
+                  <button type="submit" class="btn btn-danger">
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+              </form>
+              </div>
+            </div>
+            <% }); %>
+          </div>
+        </div>
+
+        <hr>
+
+        <div class="halls">
+          <h2>Halls</h2>
+          <div class="row">
+            <% halls.forEach((item) => { %>
+            <div class="col-md-4">
+              <div class="item" style="background-color: white">
+                
+                <% if ( item.room_id === "Birthday Hall") { %>
+                  <img src="images/birthday1.jpg" alt="birthday-hall" srcset="">
+                <% } %>
+                <% if ( item.room_id === "Business Hall") { %>
+                  <img src="images/business2.jpg" alt="birthday-hall" srcset="">
+                <% } %>
+                <% if ( item.room_id === "Wedding Hall") { %>
+                  <img src="images/wedding1.jpg" alt="birthday-hall" srcset="">
+                <% } %>
+                
+                <div class="row">
+                  <div class="col-6">
+                    <p class="p field">Room id :</p>
+                  </div>
+
+                  <div class="col-6">
+                    <p class="p"><%=item.room_id%></p>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-6">
+                    <p class="p field">Rent per Day :</p>
+                  </div>
+
+                  <div class="col-6">
+                    <p class="p"><%=item.rentPerDay%></p>
+                  </div>
+                </div> 
+                <form
+                  action="/admin-update-room"
+                  method="post"
+                  id="form"
+                  name="form"
+                >
+                  <input type="hidden" name="type" value="<%= item.type %>">
+                  <input type="number" name="newRent" id="newRent" min="0"  step="100" placeholder="New Rent" required style="width: 70%; margin: 3% auto auto; align-items: center; justify-content: center; display: flex;">
+                    <button type="submit" class="btn btn-primary btn-hall">
+                      Update
+                    </button>
+                </form>
+              </div>
+            </div>
+            <% }); %>
+          </div>
+        </div>
+
+        <hr>
+
+      </main>
+    </div>
+  </div>
+
+  <script>
+    function handleClick() {
+      const text = "Do you really want to delete the room ?";
+      if (confirm(text) == true) {
+        document.forms["form"].submit();
+      }
+    }
+  </script>
+</body>
+</html>

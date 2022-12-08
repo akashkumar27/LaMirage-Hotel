@@ -1,0 +1,112 @@
+<%- include('partials/header') %>
+
+<!-- css -->
+<link rel="stylesheet" href="css/client/hall.css" />
+
+<section id="description">
+  <h3 class="cta-text">GRAND BALLROOM</h3>
+  <ul>
+    <li>
+      Conduct structured meetings in Sapphire & Tiffany, both adjacent to each
+      other offering an option to connect to form a larger space for bigger team
+      meetings.
+    </li>
+    <li>
+      An intimate VIP boardroom Style set up with contemporary meeting
+      facilities for a private group of 10 members.
+    </li>
+  </ul>
+</section>
+
+<section id="images">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-6 image">
+        <img src="images/business2.jpg" alt="business-hall" srcset="" />
+      </div>
+
+      <div class="col-lg-6 image">
+        <img src="images/business1.jpg" alt="business-hall" srcset="" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+  <div class="pd-5 text-center">
+    <h2>Booking Details</h2>
+  </div>
+
+  <div class="row">
+    <div class="col order-md-1">
+      <form class="needs-validation" action="/hall-payment" method="POST">
+        <input type="hidden" name="type" value="Business" />
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="date">Booking date : </label>
+            <input
+              type="date"
+              class="form-control"
+              name="date"
+              id="date"
+              required
+            />
+          </div>
+          <script>
+            const tomorrow = new Date(
+              new Date().getTime() + 24 * 60 * 60 * 1000
+            )
+              .toISOString()
+              .split("T")[0];
+            document.getElementById("date").setAttribute("min", tomorrow);
+          </script>
+
+          <div class="col-md-6 mb-3">
+            <label for="time">Arriaval Time : </label>
+            <input
+              type="time"
+              step="300"
+              class="form-control"
+              name="time"
+              id="time"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="days">No. of days : </label>
+            <input
+              type="number"
+              class="form-control"
+              name="days"
+              id="days"
+              max="10"
+              min="1"
+              required
+            />
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="person">No. of person : </label>
+            <input
+              type="number"
+              class="form-control"
+              name="person"
+              id="person"
+              max="50"
+              min="10"
+              required
+            />
+          </div>
+        </div>
+        <hr class="mb-4" />
+        <button class="btn btn-primary btn-lg btn-block" type="submit">
+          Book
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<%- include('partials/footer') %>

@@ -1,0 +1,359 @@
+<%- include('partials/header') %>
+
+<!-- css -->
+<link rel="stylesheet" href="css/client/payment.css" />
+
+<div class="container mt-5">
+  <div class="card">
+    <div class="card-body">
+      <h2>Booking Details</h2>
+      <hr />
+      <div class="row">
+        <div class="col-6">
+          <p class="p field">ROOM TYPE :</p>
+        </div>
+
+        <div class="col-6">
+          <p class="p" id="type"><%=details.type%></p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-6">
+          <p class="p field">ARRIVAL DATE :</p>
+        </div>
+
+        <div class="col-6">
+          <p class="p" id="date"><%=details.date%></p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-6">
+          <p class="p field">ARRIVAL TIME :</p>
+        </div>
+
+        <div class="col-6">
+          <p class="p" id="time"><%=details.time%></p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-6">
+          <p class="p field">No. OF STAY DAYS :</p>
+        </div>
+
+        <div class="col-6">
+          <p class="p" id="days"><%=details.days%></p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-6">
+          <p class="p field">No. OF PERSON :</p>
+        </div>
+
+        <div class="col-6">
+          <p class="p" id="person"><%=details.person%></p>
+        </div>
+      </div>
+      <input
+        type="hidden"
+        name="amount"
+        id="amount"
+        value="<%= details.amount %>"
+      />
+    </div>
+  </div>
+</div>
+
+<!-- Bill -->
+
+<div class="container bill">
+  <form
+    id="form"
+    name="form"
+    method="post"
+    action="/confirmation"
+    onsubmit="return false;"
+  >
+    <input type="hidden" name="type" value="<%=details.type%>" />
+    <div class="count-input">
+      <label for="room_count">No. of rooms required</label>
+      <input
+        oninput="maxRooms(this); showAmount()"
+        type="number"
+        class="form-control"
+        name="room_count"
+        id="room_count"
+        max="<%=details.maxRooms%>"
+        min="1"
+        required
+      />
+    </div>
+    <button type="submit" id="submitbutton" style="display: none"></button>
+    <input type="hidden" name="date" value="<%= details.date %>" />
+    <input type="hidden" name="days" value="<%= details.days %>" />
+    <input type="hidden" name="time" value="<%= details.time %>" />
+    <input type="hidden" name="person" value="<%= details.person %>" />
+  </form>
+
+  <p id="amountdisp" style="margin-top: 3%"></p>
+
+  <div class="row">
+    <div class="col order-md-1">
+      <h4 class="mb-3">Billing address</h4>
+      <form
+        class="needs-validation"
+        onsubmit="event.preventDefault(); handleClick();"
+      >
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <input
+              type="text"
+              class="form-control"
+              id="firstName"
+              placeholder="First name"
+              value=""
+              name="firstName"
+              required
+            />
+          </div>
+          <div class="col-md-6 mb-3">
+            <input
+              type="text"
+              class="form-control"
+              id="lastName"
+              name="lastName"
+              placeholder="Last name"
+              value=""
+              required
+            />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              name="email"
+              placeholder="Email"
+              value=""
+              required
+            />
+          </div>
+          <div class="col-md-6 mb-3">
+            <input
+              type="number"
+              class="form-control phone"
+              id="phone"
+              name="phone"
+              placeholder="Phone no."
+              oninput="check1(this)"
+              value=""
+              required
+            />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <input
+              type="text"
+              class="form-control"
+              id="address"
+              name="address"
+              placeholder="Address"
+              value=""
+              required
+            />
+          </div>
+          <div class="col-md-6 mb-3">
+            <input
+              type="text"
+              class="form-control"
+              id="city"
+              placeholder="City"
+              value=""
+              required
+            />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <input
+              type="text"
+              class="form-control"
+              id="state"
+              placeholder="State"
+              value=""
+              required
+            />
+          </div>
+          <div class="col-md-6 mb-3">
+            <input
+              type="text"
+              class="form-control"
+              id="country"
+              placeholder="Country"
+              value=""
+              required
+            />
+          </div>
+        </div>
+
+        <script language="javascript" type="text/javascript">
+          function check1(input) {
+            if (input.value.length !== 10) {
+              input.setCustomValidity("Phone number must have 10 digits");
+            } else {
+              input.setCustomValidity("");
+            }
+          }
+        </script>
+
+        <hr class="mb-4" />
+        <h4 class="mb-3">Payment</h4>
+        <div class="d-flex my-3">
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <div class="custom-control custom-radio">
+                <input
+                  id="credit"
+                  name="paymentMethod"
+                  type="radio"
+                  class="custom-control-input"
+                  checked
+                  required
+                />
+                <label class="custom-control-label" for="credit"
+                  >Credit card</label
+                >
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <div class="custom-control custom-radio">
+                <input
+                  id="debit"
+                  name="paymentMethod"
+                  type="radio"
+                  class="custom-control-input"
+                  required
+                />
+                <label class="custom-control-label" for="debit"
+                  >Debit card</label
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <input
+              type="text"
+              class="form-control"
+              id="cc-name"
+              placeholder="Full name as displayed on card"
+              required
+            />
+            <div class="invalid-feedback">Name on card is required</div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <input
+              type="number"
+              class="form-control cc-number"
+              id="cc-number"
+              placeholder="Card number"
+              required
+            />
+            <div class="invalid-feedback">Card number is required</div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <div class="row">
+              <div class="col-md-5">
+                <label for="cc-expiration">Expiry date: </label>
+              </div>
+              <div class="col-md-7">
+                <input
+                  type="date"
+                  class="form-control"
+                  id="cc-expiration"
+                  placeholder="Expiration"
+                  required
+                />
+                <div class="invalid-feedback">Expiration date required</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <input
+              type="number"
+              class="form-control cvv"
+              id="cc-cvv"
+              placeholder="CVV"
+              required
+            />
+            <div class="invalid-feedback">Security code required</div>
+          </div>
+        </div>
+        <hr class="mb-4" />
+        <button class="btn btn-primary btn-lg btn-block" type="submit">
+          Proceed
+        </button>
+      </form>
+      <script>
+        function handleClick() {
+          if (
+            document.getElementById("room_count").value <=
+            document.getElementById("room_count").max
+          ) {
+            const text =
+              document.getElementById("amountdisp").innerHTML +
+              ". Do you want to proceed to Payment page ?";
+            if (confirm(text) == true) {
+              document.forms["form"].submit();
+            }
+          }
+        }
+
+        function maxRooms(input) {
+          const maxi = document.getElementById("room_count").max;
+          if (input.value > maxi) {
+            input.setCustomValidity("Available rooms : " + maxi);
+          } else {
+            input.setCustomValidity("");
+          }
+          document.getElementById("submitbutton").click();
+        }
+
+        function showAmount() {
+          const maxi = parseInt(document.getElementById("room_count").max);
+          const input = parseInt(document.getElementById("room_count").value);
+          if (input <= maxi) {
+            let amount = parseInt(document.getElementById("amount").value);
+            days = parseInt(document.getElementById("days").innerHTML);
+            room_count = parseInt(document.getElementById("room_count").value);
+            amount = amount * parseInt(days) * parseInt(room_count);
+            document.getElementById("amountdisp").innerHTML =
+              "The Total amount will be : " + amount;
+          } else {
+            document.getElementById("amountdisp").innerHTML =
+              "Available rooms : " + maxi;
+          }
+        }
+
+        const today = new Date(new Date().getTime())
+          .toISOString()
+          .split("T")[0];
+        document.getElementById("cc-expiration").setAttribute("min", today);
+      </script>
+    </div>
+  </div>
+</div>
+
+<%- include('partials/footer') %>

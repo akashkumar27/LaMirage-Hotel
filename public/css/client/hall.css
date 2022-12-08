@@ -1,0 +1,126 @@
+body {
+  color: #1d2124;
+  background-color: #f8f7f7;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+}
+
+
+.heading-board {
+  background-color: #1d2124;
+  color: #f8f7f7;
+}
+
+.hotel-title {
+  padding: 1.5rem 0 1.5rem 2rem;
+  text-align: start;
+}
+
+.navbar {
+  padding: 0 0 0;
+  padding-right: 1%;
+  background-color: #1d2124;
+  color: #f8f7f7;
+}
+
+.login {
+  margin: 10% auto;
+  text-align: center;
+  display: flex;
+  padding: 10px 40px
+}
+
+.nav-item {
+  padding: 0 1px;
+}
+
+.navbar-brand {
+  font-size: 2.5rem;
+  font-weight: bold;
+  padding: 2% 2%;
+}
+
+
+#footer {
+  background-color: #1d2124;
+  color: #f8f7f7;
+  width: 100%;
+  text-align: center;
+  /* bottom: 0;
+    position: relative; */
+  padding: 0.275rem 0;
+
+}
+
+.social-icon {
+  margin: 20px 10px;
+}
+
+.row {
+  align-items: center;
+  width: 100%;
+  margin: 0;
+}
+
+.image {
+  margin: auto;
+  align-items: center;
+}
+
+img {
+  height: 45%;
+  width: 80%;
+}
+
+.container-fluid {
+  padding: 0 5% 5%;
+}
+
+#description {
+  background-color: #f8f7f7;
+  padding: 5% 7% 1%;
+  color: black;
+}
+
+.cta-text {
+  font-size: 3.5rem;
+  line-height: 1.5;
+}
+
+.image {
+  margin-top: 3%;
+}
+
+.container {
+  max-width: 960px;
+  padding-bottom: 4%;
+}
+
+.lh-condensed {
+  line-height: 1.25;
+}
+
+.btn {
+  width: 40%;
+  margin: 3% auto auto;
+}
+
+li {
+  text-align: start;
+  margin: 2% auto;
+}
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #1d2124;
+  border: 2px solid #1d2124;
+}

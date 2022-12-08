@@ -1,0 +1,27 @@
+<%- include('partials/header') %>
+<link rel="stylesheet" href="css/client/confirmation.css" />
+
+<div class="container mt-5">
+  <div class="card">
+    <div class="card-body">
+      <h2>Successfully Booked !</h2>
+      <hr />
+
+      <img src="images/success.gif" alt="success-img" srcset="" />
+
+      <h5 style="margin-top: 2">Confirmation Details</h5>
+
+      <div class="row id-row">
+        <div class="col-md-5">
+          <p class="p">Booking id :</p>
+        </div>
+        <div class="col-md-7">
+          <p class="p" style="text-align: start">#<%= Id %></p>
+        </div>
+      </div>
+      <a href="/my-bookings">View My Bookings</a>
+    </div>
+  </div>
+</div>
+
+<%- include('partials/footer') %>

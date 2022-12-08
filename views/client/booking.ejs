@@ -1,0 +1,101 @@
+<%- include('partials/header') %>
+
+<!-- css -->
+<link rel="stylesheet" href="css/client/booking.css" />
+
+<div class="container">
+  <div class="py-5 text-center">
+    <h2>Booking Details</h2>
+  </div>
+
+  <div class="row">
+    <div class="col order-md-1">
+      <form class="needs-validation" action="/payment" method="POST">
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="type">Room type : </label>
+            <select
+              class="form-select form-control"
+              aria-label="Default select example"
+              id="type"
+              name="type"
+            >
+              <option value="<%=roomDetails.type%>" selected hidden>
+                <%=roomDetails.type%>
+              </option>
+              <option value="Sea Side">Sea Side</option>
+              <option value="Deluxe">Deluxe</option>
+              <option value="King Size">King Size</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="date">Arrival date : </label>
+            <input
+              type="date"
+              class="form-control"
+              name="date"
+              id="date"
+              required
+            />
+          </div>
+          <script>
+            const tomorrow = new Date(
+              new Date().getTime() + 24 * 60 * 60 * 1000
+            )
+              .toISOString()
+              .split("T")[0];
+            document.getElementById("date").setAttribute("min", tomorrow);
+          </script>
+
+          <div class="col-md-6 mb-3">
+            <label for="time">Arriaval Time : </label>
+            <input
+              type="time"
+              step="300"
+              class="form-control"
+              name="time"
+              id="time"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="days">No. of stay days : </label>
+            <input
+              type="number"
+              class="form-control"
+              name="days"
+              id="days"
+              max="10"
+              min="1"
+              required
+            />
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="person">No. of person : </label>
+            <input
+              type="number"
+              class="form-control"
+              name="person"
+              id="person"
+              max="15"
+              min="1"
+              required
+            />
+          </div>
+        </div>
+        <hr class="mb-4" />
+        <button class="btn btn-primary btn-lg btn-block" type="submit">
+          Book
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<%- include('partials/footer') %>

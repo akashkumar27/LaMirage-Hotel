@@ -1,0 +1,113 @@
+<%- include('partials/navbar') %>
+
+<!-- CSS -->
+<link rel="stylesheet" href="css/admin/addemployee.css" />
+
+<%- include('partials/sidebar') %>
+
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+      <h1 class="h2">Add Empoyee</h1>
+    </div>
+    <div class="container">
+        <form class="needs-validation" action="/admin-addemployee" method="POST">
+                <div class="row">
+                    <div class="col-6 mb-3">
+                      <label for="room_id">Name : </label>
+                    </div>
+    
+                    <div class="col-md-6 mb-3">
+                        <input
+                          type="text"
+                          class="form-control"
+                          name="name"
+                          id="name"
+                          required
+                        />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-6 mb-3">
+                      <label for="room_id">Phone No. : </label>
+                    </div>
+    
+                    <div class="col-md-6 mb-3">
+                        <input
+                          type="number"
+                          class="form-control"
+                          name="phone"
+                          id="phone"
+                          oninput="check1(this)""
+                          required
+                        />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-6 mb-3">
+                      <label for="room_id">Work : </label>
+                    </div>
+    
+                    <div class="col-md-6 mb-3">
+                        <input
+                          type="text"
+                          class="form-control"
+                          name="work"
+                          id="work"
+                          required
+                        />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-6 mb-3">
+                      <label for="room_id">Salary(in Rupees per month) : </label>
+                    </div>
+    
+                    <div class="col-md-6 mb-3">
+                        <input
+                          type="number"
+                          class="form-control"
+                          name="salary"
+                          id="salary"
+                          required
+                          min="0"
+                        />
+                    </div>
+                </div>
+
+                <button class="btn btn-primary btn-lg " type="submit">
+                    Add Employee
+                </button>
+            </form>
+    </div>
+  </main>
+</div>
+</div>
+
+<script language="javascript" type="text/javascript">
+    function check1(input) {
+      if (input.value.length !== 10) {
+        input.setCustomValidity("Phone number must have 10 digits");
+      } else {
+        input.setCustomValidity("");
+      }
+    }
+
+    const dates = document.getElementsByName("date");
+  for (let i = 0; i < dates.length; i++) {
+    let d = dates[i];
+    function convert(str) {
+      var date = new Date(str),
+        mnth = ("0" + (date.getMonth() + 1)).slice(-2),
+        day = ("0" + date.getDate()).slice(-2);
+      var result = [date.getFullYear(), mnth, day].join("-");
+      d.innerHTML = result;
+    }
+    convert(d.innerHTML);
+  }
+</script>
+
+</body>
+</html>

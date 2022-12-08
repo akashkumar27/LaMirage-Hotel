@@ -1,0 +1,110 @@
+<%- include('partials/header') %>
+
+<!-- css -->
+<link rel="stylesheet" href="css/client/hall.css" />
+
+<section id="description">
+  <h3 class="cta-text">TIMELESS WEDDINGS</h3>
+  <ul>
+    <li>A wedding with us has meant something special for generations.</li>
+    <li>
+      Elevate your big day into a memorable and momentous celebration with our
+      iconic repertoire of grand palaces, world class resorts and iconic
+      properties.
+    </li>
+    <li>Make your dreams come true with timeless weddings.</li>
+  </ul>
+</section>
+
+<section id="images">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-6 image">
+        <img src="images/wedding1.jpg" alt="wedding-hall" srcset="" />
+      </div>
+
+      <div class="col-lg-6 image">
+        <img src="images/wedding2.jpg" alt="wedding-hall" srcset="" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+  <div class="pd-5 text-center">
+    <h2>Booking Details</h2>
+  </div>
+
+  <div class="row">
+    <div class="col order-md-1">
+      <form class="needs-validation" action="/hall-payment" method="POST">
+        <input type="hidden" name="type" value="Wedding" />
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="date">Booking date : </label>
+            <input
+              type="date"
+              class="form-control"
+              name="date"
+              id="date"
+              required
+            />
+          </div>
+          <script>
+            const tomorrow = new Date(
+              new Date().getTime() + 24 * 60 * 60 * 1000
+            )
+              .toISOString()
+              .split("T")[0];
+            document.getElementById("date").setAttribute("min", tomorrow);
+          </script>
+
+          <div class="col-md-6 mb-3">
+            <label for="time">Arriaval Time : </label>
+            <input
+              type="time"
+              step="300"
+              class="form-control"
+              name="time"
+              id="time"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="days">No. of days : </label>
+            <input
+              type="number"
+              class="form-control"
+              name="days"
+              id="days"
+              max="10"
+              min="1"
+              required
+            />
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="person">No. of person : </label>
+            <input
+              type="number"
+              class="form-control"
+              name="person"
+              id="person"
+              max="300"
+              min="10"
+              required
+            />
+          </div>
+        </div>
+        <hr class="mb-4" />
+        <button class="btn btn-primary btn-lg btn-block" type="submit">
+          Book
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<%- include('partials/footer') %>

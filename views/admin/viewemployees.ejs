@@ -1,0 +1,120 @@
+<%- include('partials/navbar') %>
+
+<!-- CSS -->
+<link rel="stylesheet" href="css/admin/viewemployees.css" />
+
+<%- include('partials/sidebar') %>
+
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+      <h1 class="h2">Employee Details</h1>
+    </div>
+    <div class="search">
+        <a href="/admin-addemployee" style="text-decoration: none;">
+            <button class="btn btn-primary"  style="align-items: center; justify-content: center; display: flex; margin: 5% auto 3%; width: 50%;">
+                Add Employee
+            </button>
+        </a>
+        
+    </div>
+    <div class="employee">
+        <div class="row">
+            <% employees.forEach((item) => { %> 
+                <div class="col-md-4">
+                    <div class="item" style="background-color: white">
+                        <div class="row">
+                            <div class="col-6">
+                                <p class="p field">Name :</p>
+                            </div>
+                    
+                            <div class="col-6" style="line-break:anywhere">
+                                <p class="p"><%=item.name%></p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-6">
+                            <p class="p field">Phone :</p>
+                            </div>
+                
+                            <div class="col-6" style="line-break:anywhere">
+                            <p class="p"><%=item.phone%></p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-6">
+                            <p class="p field">Date of Joining :</p>
+                            </div>
+                
+                            <div class="col-6" style="line-break:anywhere">
+                            <p class="p" name="date"><%=item.dateOfJoin%></p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-6">
+                            <p class="p field">Work :</p>
+                            </div>
+                
+                            <div class="col-6" style="line-break:anywhere">
+                            <p class="p"><%=item.work%></p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-6">
+                            <p class="p field">Salary(in Rupees per month) :</p>
+                            </div>
+                
+                            <div class="col-6" style="line-break:anywhere"> 
+                            <p class="p"><%=item.salary%></p>
+                            </div>
+                        </div>
+                        
+                        <form
+                            action="/admin-remove-employee"
+                            method="post"
+                            id="form"
+                            name="form"
+                            onsubmit="event.preventDefault(); handleClick();"
+                            >
+                            <input type="hidden" name="id" value="<%= item._id %>" />
+                            <button type="submit" class="btn btn-danger">
+                                Remove
+                            </button>
+                        </form>
+                    </div>
+                </div>
+             <% }); %> 
+          </div>
+    </div>
+</main>
+</div>
+</div>
+
+<script language="javascript" type="text/javascript">
+const dates = document.getElementsByName("date");
+  for (let i = 0; i < dates.length; i++) {
+    let d = dates[i];
+    function convert(str) {
+      var date = new Date(str),
+        mnth = ("0" + (date.getMonth() + 1)).slice(-2),
+        day = ("0" + date.getDate()).slice(-2);
+      var result = [date.getFullYear(), mnth, day].join("-");
+      d.innerHTML = result;
+    }
+    convert(d.innerHTML);
+  }
+
+  function handleClick() {
+    const text = "Do you really want to remove the employee ?";
+    if (confirm(text) == true) {
+      document.forms["form"].submit();
+      alert("Employee removed");
+    }
+  }
+</script>
+
+</body>
+</html>

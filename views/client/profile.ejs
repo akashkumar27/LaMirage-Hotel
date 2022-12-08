@@ -1,0 +1,99 @@
+<%- include('partials/header') %>
+<!-- css -->
+<link rel="stylesheet" href="css/client/profile.css" />
+
+<div class="container mt-5">
+    <div class="card">
+      <div class="card-body">
+        <h2>Your Profile</h2>
+        <p><%= response %> </p>
+        <hr>
+        <div class="row">
+            <div class="col-6">
+                <p class="p">Name : </p>
+            </div>
+            <div class="col-6">
+                <p class="p"><%=details.name%></p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-6">
+                <p class="p">Mail id: </p>
+            </div>
+            <div class="col-6">
+                <p class="p"><%=details.username%></p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-6">
+                <p class="p">Phone No. : </p>
+            </div>
+            <div class="col-6">
+                <p class="p"><%=details.phone%></p>
+            </div>
+        </div>
+
+        <hr>
+
+        <h5>Update Phone</h5>
+
+        <div class="update">
+            <div class="row">
+                <div class="col-md-6">
+                    <form action="/updatephone" method="post">
+                        <input type="number" class="form-control phone" name="phone" oninput="check1(this)" placeholder="New Phone No.">
+                </div>
+                <div class="col-md-6">
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </form>    
+                </div>
+            </div>
+            <hr>
+            <h5>Update Password</h5>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <form action="/updatepassword" method="post">
+                        <input type="password" class="form-control" name="oldpassword" required maxlength="20" minlength="8" id="pass2" placeholder="Old Password">
+                        <input type="password" class="form-control" name="newpassword" required maxlength="20" minlength="8" id="pass" oninput="check2(this)" placeholder="New Password">
+                    </div>
+                <div class="col-md-6">
+                    <input type="password" class="form-control" name="crnf_password" required maxlength="20" minlength="8" id="pass1" oninput="check3(this)" placeholder="Confirm Password">
+                    <button type="submit" class="btn btn-primary">Update</button>
+                    </form>    
+                </div>
+            </div>
+            <script language='javascript' type='text/javascript'>
+                function check1(input){
+                  if(input.value.length !== 10){
+                    input.setCustomValidity("Phone number must have 10 digits");
+                  }
+                  else{
+                    input.setCustomValidity('');
+                  }
+                }
+                function check2(input) {
+                    if (input.value == document.getElementById('pass2').value) {
+                        input.setCustomValidity('New password must be different.');
+                    } else {
+                        // input is valid -- reset the error message
+                        input.setCustomValidity('');
+                    }
+                }
+                function check3(input) {
+                    if (input.value != document.getElementById('pass').value) {
+                        input.setCustomValidity('Password Must be Matching.');
+                    } else {
+                        // input is valid -- reset the error message
+                        input.setCustomValidity('');
+                    }
+                }
+            </script>
+        </div>
+      </div>
+    </div>
+</div>
+
+<%- include('partials/footer') %>

@@ -1,0 +1,289 @@
+body {
+  color: #1d2124;
+  background-color: #f8f7f7;
+  text-align: center;
+  /* font-family: 'Lato', sans-serif; */
+  font-family: 'Poppins', sans-serif;
+  /* height: 100vh; */
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 800;
+}
+
+.heading-board {
+  background-color: #1d2124;
+  color: #f8f7f7;
+}
+
+.hotel-title {
+  padding: 1.5rem 0 1.5rem 2rem;
+  text-align: start;
+}
+
+.navbar {
+  padding: 0 0 0;
+  padding-right: 1%;
+  background-color: #1d2124;
+  color: #f8f7f7;
+}
+
+.nav-item {
+  padding: 0 1px;
+}
+
+.navbar-brand {
+  font-size: 2.5rem;
+  font-weight: bold;
+  padding: 2% 2%;
+}
+
+/* Headings */
+
+.big-heading {
+  font-size: 3.5rem;
+  line-height: 1.5;
+}
+
+#title {
+  text-align: left;
+}
+
+.container-fluid {
+  margin-top: 3%;
+  padding: 3% 5% 5%;
+}
+
+
+/* Download buttons */
+
+.download-buttons {
+  width: 70%;
+  margin: 8% auto;
+}
+
+/* Title image */
+
+.hotel-img {
+  width: 80%;
+  height: 80%;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  margin: auto;
+}
+
+
+#features {
+  padding: 2% 5%;
+  background-color: #1d2124;
+  color: white;
+  position: relative;
+}
+
+.feature-box {
+  padding: 2%;
+}
+
+.ft-icon {
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.ft-icon:hover {
+  color: #f8f7f7;
+}
+
+
+/* Testimonial section */
+
+#testimonials {
+  background-color: #f8f7f7;
+  color: #1d2124;
+  padding-top: 4.5%;
+  padding-bottom: 4.5%;
+}
+
+.corousal-item {
+  padding: 7% 15%;
+}
+
+.carousel-control-prev-icon {
+  background-image: url("https://cdn.iconscout.com/icon/free/png-256/right-arrow-1438234-1216195.png") !important;
+  transform: scaleX(-1);
+}
+
+.carousel-control-next-icon {
+  background-image: url("https://cdn.iconscout.com/icon/free/png-256/right-arrow-1438234-1216195.png") !important;
+
+}
+
+.testimonial-text {
+
+  padding: 0 10%;
+  font-size: 2rem;
+  line-height: 1.5;
+}
+
+.testimonial-img {
+  width: 12%;
+  border-radius: 100%;
+  margin: 20px;
+}
+
+#press {
+  background-color: #f8f7f7;
+}
+
+.press-logo {
+  width: 40%;
+  margin: auto;
+  align-items: center;
+  justify-content: center
+}
+
+.abnb {
+  width: 30%
+}
+
+#attractions {
+  background-color: #f8f7f7;
+  margin-bottom: 3%;
+}
+
+.tourist-img {
+  width: 60%;
+  margin: auto;
+  align-items: center;
+  justify-content: center;
+}
+
+.tourist-text {
+  margin: 2% auto 4%;
+}
+
+
+#footer {
+  background-color: #1d2124;
+  color: #f8f7f7;
+  width: 100%;
+  text-align: center;
+  /* bottom: 0;
+  position: relative; */
+  padding: 0.275rem 0;
+
+}
+
+.social-icon {
+  margin: 20px 10px;
+}
+
+.row {
+  align-items: center;
+  width: 100%;
+  margin: 0;
+}
+
+.col-lg-6 {
+  align-items: center;
+  justify-content: center;
+}
+
+.col-6 {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+
+
+@media (max-width: 480px) {
+
+  #title {
+    text-align: center;
+  }
+
+  .download-buttons {
+    width: auto;
+    margin: 8% auto;
+  }
+
+  .big-heading {
+    font-size: 2.5rem;
+    line-height: 1.5;
+  }
+
+  .hotel-img {
+    margin: 5% auto;
+    position: static;
+    width: 90%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+  }
+
+  .hotel-title {
+    padding: 3% auto;
+    text-align: center;
+  }
+
+  .press-logo {
+    width: 90%;
+  }
+
+  .testimonial-text {
+    padding: 0 10%;
+    font-size: 1.5rem;
+    line-height: 1.5;
+  }
+
+  .tourist-text {
+    font-size: x-large;
+    margin: 4% auto 4%;
+  }
+
+  .abnb {
+    width: 67%;
+  }
+
+}
+
+@media (min-width: 481) and (max-width: 991) {
+  .hotel-img {
+    width: 50%;
+    height: 50%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin: auto;
+  }
+
+  .hotel-img {
+    width: 50%;
+    height: 50%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin: auto;
+  }
+}
+
+
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #1d2124;
+  border: 2px solid #1d2124;
+}

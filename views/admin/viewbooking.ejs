@@ -1,0 +1,153 @@
+<%- include('partials/navbar') %>
+
+<!-- CSS -->
+<link rel="stylesheet" href="css/admin/viewbooking.css" />
+
+<%- include('partials/sidebar') %>
+
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+      <h1 class="h2">Bookings</h1>
+    </div>
+    <div class="date-picker">
+        <form action="/admin-viewbookings" method="post">
+            <input type="date" name="date" id="date" style="height: 45px;">
+            <button class="btn btn-primary" type="submit" style="margin-left: 3%;">
+                Search
+            </button>
+        </form>
+    </div>
+
+    <h2 style="margin-top: 3%;"> <%=msg%></h2>
+
+    <div class="bookedrooms">
+        <div class="row">
+            <% bookedRooms.length>0 && bookedRooms.forEach((item) => { %> 
+                <div class="col-md-4">
+                    <div class="item" style="background-color: white">
+                        <div class="row">
+                        <div class="col-6">
+                            <p class="p field">Name :</p>
+                        </div>
+                
+                        <div class="col-6" style="line-break:anywhere">
+                            <p class="p"><%=item.userDetails[0].name%></p>
+                        </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-6">
+                            <p class="p field">Username :</p>
+                            </div>
+                
+                            <div class="col-6" style="line-break:anywhere">
+                            <p class="p"><%=item.userDetails[0].username%></p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-6">
+                            <p class="p field">Phone :</p>
+                            </div>
+                
+                            <div class="col-6" style="line-break:anywhere">
+                            <p class="p"><%=item.userDetails[0].phone%></p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-6">
+                            <p class="p field">Rooms :</p>
+                            </div>
+                
+                            <div class="col-6" style="line-break:anywhere">
+                            <p class="p"><%=item.room_id%></p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-6">
+                            <p class="p field">Type :</p>
+                            </div>
+                
+                            <div class="col-6" style="line-break:anywhere"> 
+                            <p class="p"><%=item.type%></p>
+                            </div>
+                        </div>
+                
+                        <div class="row">
+                        <div class="col-6">
+                            <p class="p field">Check in Date :</p>
+                        </div>
+                
+                        <div class="col-6">
+                            <p class="p" name="date" ><%=item.check_in_date%></p>
+                        </div>
+                        </div>
+                
+                        <div class="row">
+                        <div class="col-6">
+                            <p class="p field">Check out Date :</p>
+                        </div>
+                
+                        <div class="col-6">
+                            <p class="p" name="date"><%=item.check_out_date%></p>
+                        </div>
+                        </div>
+                
+                        <div class="row">
+                        <div class="col-6">
+                            <p class="p field">Check in Time :</p>
+                        </div>
+                
+                        <div class="col-6">
+                            <p class="p"><%=item.check_in_time%></p>
+                        </div>
+                        </div>
+                
+                        <div class="row">
+                        <div class="col-6">
+                            <p class="p field">No. of person :</p>
+                        </div>
+                
+                        <div class="col-6">
+                            <p class="p"><%=item.no_of_person%></p>
+                        </div>
+                        </div>
+                
+                        <div class="row">
+                        <div class="col-6">
+                            <p class="p field">Amount :</p>
+                        </div>
+                
+                        <div class="col-6">
+                            <p class="p"><%=item.amount%></p>
+                        </div>
+                        </div>
+                        
+                    </div>
+                </div>
+             <% }); %> 
+          </div>
+    </div>
+</main>
+</div>
+</div>
+
+<script>
+    const dates = document.getElementsByName("date");
+    for (let i = 0; i < dates.length; i++) {
+      let d = dates[i];
+      function convert(str) {
+        var date = new Date(str),
+          mnth = ("0" + (date.getMonth() + 1)).slice(-2),
+          day = ("0" + date.getDate()).slice(-2);
+        var result = [date.getFullYear(), mnth, day].join("-");
+        d.innerHTML = result;
+      }
+      convert(d.innerHTML);
+    }
+  </script>
+
+</body>
+</html>

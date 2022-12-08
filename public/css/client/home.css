@@ -1,0 +1,196 @@
+body {
+  color: #1d2124;
+  background-color: #f8f7f7;
+  text-align: center;
+  /* font-family: 'Lato', sans-serif; */
+  font-family: 'Poppins', sans-serif;
+  height: 100vh;
+}
+
+
+.heading-board {
+  background-color: #1d2124;
+  color: #f8f7f7;
+}
+
+.hotel-title {
+  padding: 1.5rem 0 1.5rem 2rem;
+  text-align: start;
+}
+
+.navbar {
+  padding: 0 0 0;
+  padding-right: 1%;
+  background-color: #1d2124;
+  color: #f8f7f7;
+}
+
+.nav-item {
+  padding: 0 1px;
+}
+
+.navbar-brand {
+  font-size: 2.5rem;
+  font-weight: bold;
+  padding: 2% 2%;
+}
+
+/* intro-img   */
+
+.intro-img {
+  background-image: url("../../images/hotel1.jpg");
+  background-size: 100% 100%;
+  height: 90vh;
+  width: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mt-5 {
+  margin: 0 0 !important;
+}
+
+.card {
+  background-color: rgba(0, 0, 0, 0.571);
+  border: none;
+  width: 90%;
+  margin: auto;
+  max-width: 25rem;
+  color: white;
+}
+
+/* feature */
+.big-heading {
+  font-size: 3.5rem;
+  line-height: 1.5;
+}
+
+#feature {
+  text-align: left;
+}
+
+.container-fluid {
+  padding: 5% 5% 5%;
+}
+
+.hotel-img1 {
+  width: 45%;
+  height: 45%;
+}
+
+.hotel-img2 {
+  width: 45%;
+  height: 45%;
+  margin-left: 10px;
+}
+
+.hotel-img3 {
+  width: 45%;
+  height: 45%;
+  margin-top: 10px;
+}
+
+.hotel-img4 {
+  width: 45%;
+  height: 45%;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+/* Rooms */
+
+#pricing {
+  padding: 25px;
+  background-color: #dddddd;
+  color: black;
+}
+
+.pricing-text {
+  font-size: 2rem;
+  line-height: 1.5;
+  color: black;
+}
+
+.price {
+  color: black;
+}
+
+.price-img {
+  height: 65%;
+  width: 65%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 4%;
+}
+
+.pricing-column {
+  padding: 3% 2%;
+}
+
+
+.room-btn {
+  border: none;
+  color: rgb(64, 46, 227);
+  background-color: #f8f7f7;
+}
+
+/* about us */
+#about-us {
+  background-color: #f8f7f7;
+  padding: 7% 15%;
+  color: black;
+}
+
+.cta-text {
+  font-size: 3.5rem;
+  line-height: 1.5;
+}
+
+/* footer */
+
+#footer {
+  background-color: #1d2124;
+  color: #f8f7f7;
+  width: 100%;
+  text-align: center;
+  /* bottom: 0;
+  position: relative; */
+  padding: 0.275rem 0;
+
+}
+
+.social-icon {
+  margin: 20px 10px;
+}
+
+.row {
+  align-items: center;
+  width: 100%;
+  margin: 0;
+}
+
+@media (max-width:480px) {
+  .intro-img {
+    height: 30vh;
+  }
+}
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #1d2124;
+  border: 2px solid #1d2124;
+}

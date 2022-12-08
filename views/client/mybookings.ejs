@@ -1,0 +1,214 @@
+<%- include('partials/header') %>
+<!-- css -->
+<link rel="stylesheet" href="css/client/mybookings.css" />
+
+<main>
+  <div class="currentBookings">
+    <h2>Current Bookings</h2>
+    <div class="row">
+      <% currBooking.forEach((item,idx) => { %>
+      <div class="col-md-4">
+        <div class="item" style="background-color: white">
+          <div class="row">
+            <div class="col-6">
+              <p class="p field">Type :</p>
+            </div>
+
+            <div class="col-6">
+              <p class="p"><%=item.type%></p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-6">
+              <p class="p field">Check in Date :</p>
+            </div>
+
+            <div class="col-6">
+              <p class="p" name="date"><%=item.check_in_date%></p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-6">
+              <p class="p field">Check out Date :</p>
+            </div>
+
+            <div class="col-6">
+              <p class="p" name="date"><%=item.check_out_date%></p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-6">
+              <p class="p field">Check in Time :</p>
+            </div>
+
+            <div class="col-6">
+              <p class="p"><%=item.check_in_time%></p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-6">
+              <p class="p field">No. of rooms :</p>
+            </div>
+
+            <div class="col-6">
+              <p class="p" name="room_count" +idx><%=item.room_id%></p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-6">
+              <p class="p field">No. of person :</p>
+            </div>
+
+            <div class="col-6">
+              <p class="p"><%=item.no_of_person%></p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-6">
+              <p class="p field">Amount :</p>
+            </div>
+
+            <div class="col-6">
+              <p class="p"><%=item.amount%></p>
+            </div>
+          </div>
+          <form
+            action="/delete-room"
+            method="post"
+            id="form"
+            name="form"
+            onsubmit="event.preventDefault(); handleClick();"
+          >
+            <input type="hidden" name="id" value="<%= item._id %>" />
+            <button type="submit" class="btn btn-danger">
+              <i class="fa-solid fa-trash"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+      <% }); %>
+    </div>
+  </div>
+
+  <hr />
+
+  <div class="previousBookings">
+    <h2>Previous Bookings</h2>
+    <div class="row">
+      <% prevBooking.forEach((item,idx) => { %>
+      <div class="col-md-4">
+        <div class="item" style="background-color: white">
+          <div class="row">
+            <div class="col-6">
+              <p class="p field">Type :</p>
+            </div>
+
+            <div class="col-6">
+              <p class="p"><%=item.type%></p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-6">
+              <p class="p field">Check in Date :</p>
+            </div>
+
+            <div class="col-6">
+              <p class="p" name="date"><%=item.check_in_date%></p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-6">
+              <p class="p field">Check out Date :</p>
+            </div>
+
+            <div class="col-6">
+              <p class="p" name="date"><%=item.check_out_date%></p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-6">
+              <p class="p field">Check in Time :</p>
+            </div>
+
+            <div class="col-6">
+              <p class="p"><%=item.check_in_time%></p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-6">
+              <p class="p field">No. of rooms :</p>
+            </div>
+
+            <div class="col-6">
+              <p class="p" name="room_count" +idx><%=item.room_id%></p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-6">
+              <p class="p field">No. of person :</p>
+            </div>
+
+            <div class="col-6">
+              <p class="p"><%=item.no_of_person%></p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-6">
+              <p class="p field">Amount :</p>
+            </div>
+
+            <div class="col-6">
+              <p class="p"><%=item.amount%></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% }); %>
+    </div>
+  </div>
+
+  <hr />
+</main>
+
+<script>
+  const dates = document.getElementsByName("date");
+  for (let i = 0; i < dates.length; i++) {
+    let d = dates[i];
+    function convert(str) {
+      var date = new Date(str),
+        mnth = ("0" + (date.getMonth() + 1)).slice(-2),
+        day = ("0" + date.getDate()).slice(-2);
+      var result = [date.getFullYear(), mnth, day].join("-");
+      d.innerHTML = result;
+    }
+    convert(d.innerHTML);
+  }
+  const r_counts = document.getElementsByName("room_count");
+
+  for (let i = 0; i < r_counts.length; i++) {
+    let r = r_counts[i];
+    r.innerHTML = r.innerHTML.split(",").length;
+  }
+
+  function handleClick() {
+    const text = "Do you really want to cancel the booking ?";
+    if (confirm(text) == true) {
+      document.forms["form"].submit();
+      alert("The amount will be refunded within 48 hours");
+    }
+  }
+</script>
+
+<%- include('partials/footer') %>

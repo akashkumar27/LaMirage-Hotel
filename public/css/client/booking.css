@@ -1,0 +1,102 @@
+h3 {
+  font-weight: 700;
+  margin: 2% auto 0;
+  text-align: center;
+}
+
+h2 {
+  text-align: center;
+  justify-content: center;
+}
+
+
+body {
+  color: #1d2124;
+  background-color: #f8f7f7;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+}
+
+
+.heading-board {
+  background-color: #1d2124;
+  color: #f8f7f7;
+}
+
+.navbar {
+  padding: 0 0 0;
+  padding-right: 1%;
+  background-color: #1d2124;
+  color: #f8f7f7;
+}
+
+.login {
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  width: 40%;
+  margin: auto;
+}
+
+.nav-item {
+  padding: 0 1px;
+}
+
+.navbar-brand {
+  font-size: 2.5rem;
+  font-weight: bold;
+  padding: 2% 2%;
+}
+
+.container {
+  max-width: 960px;
+}
+
+.lh-condensed {
+  line-height: 1.25;
+}
+
+.btn {
+  width: 40%;
+  margin: auto;
+}
+
+.needs-validation {
+  margin-bottom: 5rem;
+}
+
+#footer {
+  background-color: #1d2124;
+  color: #f8f7f7;
+  width: 100%;
+  text-align: center;
+  /* bottom: 0;
+  position: relative; */
+  padding: 0.275rem 0;
+
+}
+
+.social-icon {
+  margin: 20px 10px;
+}
+
+.row {
+  align-items: center;
+  width: 100%;
+  margin: 0;
+}
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #1d2124;
+  border: 2px solid #1d2124;
+}

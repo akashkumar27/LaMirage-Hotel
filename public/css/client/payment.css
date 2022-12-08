@@ -1,0 +1,170 @@
+body {
+  color: #1d2124;
+  background-color: #f8f7f7;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  height: 100vh;
+}
+
+
+.heading-board {
+  background-color: #1d2124;
+  color: #f8f7f7;
+}
+
+.hotel-title {
+  padding: 1.5rem 0 1.5rem 2rem;
+  text-align: start;
+}
+
+.navbar {
+  padding: 0 0 0;
+  padding-right: 1%;
+  background-color: #1d2124;
+  color: #f8f7f7;
+}
+
+.nav-item {
+  padding: 0 1px;
+}
+
+.navbar-brand {
+  font-size: 2.5rem;
+  font-weight: bold;
+  padding: 2% 2%;
+}
+
+.card-body {
+  width: 80%;
+  margin: auto auto;
+}
+
+.card {
+  margin: auto auto 4rem;
+  background-color: #eeeeee;
+  color: black;
+  width: 50%;
+}
+
+
+.bill {
+  max-width: 960px;
+  margin-bottom: 4rem;
+}
+
+.needs-validation {
+  margin: auto;
+  max-width: 45rem;
+  width: 90%;
+}
+
+.lh-condensed {
+  line-height: 1.25;
+}
+
+
+h5 {
+  display: flex;
+  flex-direction: row;
+}
+
+.custom-radio {
+  display: flex;
+  flex-direction: row;
+}
+
+#footer {
+  background-color: #1d2124;
+  color: #f8f7f7;
+  width: 100%;
+  text-align: center;
+  /* bottom: 0;
+  position: relative; */
+  padding: 0.275rem 0;
+}
+
+.phone::-webkit-outer-spin-button,
+.phone::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.cvv::-webkit-outer-spin-button,
+.cvv::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.cc-number::-webkit-outer-spin-button,
+.cc-number::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.social-icon {
+  margin: 20px 10px;
+}
+
+.row {
+  align-items: center;
+  width: 100%;
+  margin: 0;
+}
+
+.p {
+  text-align: start;
+}
+
+.btn {
+  width: 40%;
+  margin: auto auto;
+}
+
+.field {
+  font-weight: 600;
+}
+
+.count-input {
+  width: 40%;
+  margin: 3% auto auto;
+}
+
+@media (max-width:480px) {
+  .card {
+    width: auto;
+  }
+
+  .card-body {
+    width: auto;
+    margin: 0;
+  }
+
+  .count-input {
+    width: 80%;
+  }
+}
+
+@media (min-width :481px) and (max-width:1000px) {
+  .card {
+    width: 90%;
+  }
+
+  .card-body {
+    width: auto;
+  }
+}
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #1d2124;
+  border: 2px solid #1d2124;
+}
