@@ -657,6 +657,28 @@ app.post("/confirmation", (req, res, next) => {
 
       newBooking.save();
       const id = newBooking._id;
+
+      const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: process.env.USERNAME_O.toString(),
+          pass: process.env.PASSWORD.toString(),
+        },
+      });
+      var mailOptions = {
+        from: process.env.USERNAME_O,
+        to: "akashdevelops@gmail.com",
+        subject: 'Room Booked',
+        text: "Booking ID : " + new String(id).toString() + "\n\nRoom Number :" + new String(newBooking.room_id).toString() + "\n\nAmount : " + new String(newBooking.amount).toString() + "\n\nCheck In Date : " + new String(new Date(newBooking.check_in_date)) + "\n\nCheck Out Date : " + new String(new Date(newBooking.check_out_date)) + "\n\nArrival Time :" + new String(newBooking.check_in_time) + "\n\nThe above booking is done"
+      };
+
+      transporter.sendMail(mailOptions, function (error, info) {
+        if (error)
+          throw Error(error);
+        else {
+          console.log('Booking Email Sent Successfully');
+        }
+      });
       if (req.isAuthenticated()) {
         res.render("client/confirmation.ejs", { Id: id });
       }
@@ -694,6 +716,29 @@ app.post("/confirmation-hall", (req, res, next) => {
     })
     newBooking.save();
     const id = newBooking._id;
+
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: process.env.USERNAME_O.toString(),
+        pass: process.env.PASSWORD.toString(),
+      },
+    });
+    var mailOptions = {
+      from: process.env.USERNAME_O,
+      to: "akashdevelops@gmail.com",
+      subject: 'Hall Booked',
+      text: "Booking ID : " + new String(id).toString() + "\n\nHall type :" + new String(newBooking.room_id).toString() + "\n\nAmount : " + new String(newBooking.amount).toString() + "\n\nCheck In Date : " + new String(new Date(newBooking.check_in_date)) + "\n\nCheck Out Date : " + new String(new Date(newBooking.check_out_date)) + "\n\nArrival Time :" + new String(newBooking.check_in_time) + "\n\nThe above booking is done"
+    };
+
+    transporter.sendMail(mailOptions, function (error, info) {
+      if (error)
+        throw Error(error);
+      else {
+        console.log('Hall Booking Email Sent Successfully');
+      }
+    });
+
     if (req.isAuthenticated()) {
       res.render("client/confirmation.ejs", { Id: id });
     }
