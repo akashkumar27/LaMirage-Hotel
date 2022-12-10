@@ -105,6 +105,7 @@ passport.use(new GoogleStrategy({
   callbackURL: "https://lamirage-240q.onrender.com/auth/google/login"
 },
   function (accessToken, refreshToken, profile, cb) {
+    console.log(profile)
     User.findOrCreate({ googleId: profile.id }, function (err, user) {
       return cb(err, user);
     });
@@ -119,6 +120,7 @@ passport.use(new MicrosoftStrategy({
   scope: ['user.read'],
 },
   function (accessToken, refreshToken, profile, done) {
+    console.log(profile)
     User.findOrCreate({ microsoftId: profile.id }, function (err, user) {
       return done(err, user);
     });
@@ -464,7 +466,7 @@ app.post("/delete-room", (req, res, next) => {
             from: process.env.USERNAME_O,
             to: "akashdevelops@gmail.com",
             subject: 'Room deleted',
-            text: "Booking ID : " + new String(booked._id).toString() + "\n\nRoom Number :" + new String(booked.room_id).toString() + "\n\nAmount : " + new String(booked.amount).toString() + "\n\nCheck In Date : " + new String(new Date(booked.check_in_date)) + "\n\nCheck Out Date : " + new String(new Date(booked.check_out_date)) + "\n\nArrival Time :" + new String(booked.check_in_time) + "\n\nThe above room is deleted"
+            text: "Booking ID : " + new String(booked._id).toString() + "\n\nRoom Number :" + new String(booked.room_id).toString() + "\n\nAmount : " + new String(booked.amount).toString() + "\n\nCheck In Date : " + new String(new Date(booked.check_in_date)) + "\n\nCheck Out Date : " + new String(new Date(booked.check_out_date)) + "\n\nArrival Time :" + new String(booked.check_in_time) + "\n\nThe above booking is cancelled"
           };
 
           transporter.sendMail(mailOptions, function (error, info) {
@@ -875,7 +877,7 @@ app.get("/admin-viewbookings", (req, res, next) => {
     else {
       isAdmin = user.isAdmin
       if (req.isAuthenticated() && isAdmin) {
-        const date = new Date();
+        const date = new Date().toISOString();
         try {
           const getBooks = async () => {
             const response = await Book.aggregate([
@@ -903,7 +905,7 @@ app.get("/admin-viewbookings", (req, res, next) => {
               res.render("admin/viewbooking.ejs", { bookedRooms: response, msg: "" })
             }
             else {
-              res.render("admin/viewbooking.ejs", { bookedRooms: [], msg: "No Bookings available..." })
+              res.render("admin/viewbooking.ejs", { bookedRooms: [], msg: "No Bookings available today..." })
             }
           }
           getBooks();
