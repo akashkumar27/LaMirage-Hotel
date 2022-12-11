@@ -102,7 +102,7 @@ passport.deserializeUser(function (user, cb) {
 passport.use(new GoogleStrategy({
   clientID: process.env.GCLIENT_ID,
   clientSecret: process.env.GCLIENT_SECRET,
-  callbackURL: "https://lamirage-240q.onrender.com/auth/google/login"
+  callbackURL: process.env.HOSTING_PORT + "/auth/google/login"
 },
   function (accessToken, refreshToken, profile, cb) {
     console.log(profile)
@@ -116,7 +116,7 @@ passport.use(new MicrosoftStrategy({
   // Standard OAuth2 options
   clientID: process.env.MCLIENT_ID,
   clientSecret: process.env.MCLIENT_SECRET,
-  callbackURL: "https://lamirage-240q.onrender.com/auth/microsoft/login",
+  callbackURL: process.env.HOSTING_PORT + "/auth/microsoft/login",
   scope: ['user.read'],
 },
   function (accessToken, refreshToken, profile, done) {
@@ -139,7 +139,7 @@ const renderBooking = (req, res, next) => {
       isAdmin = user.isAdmin
       if (req.isAuthenticated() && isAdmin) {
         if ([...bookedRooms].length !== 0) {
-          res.render("admin/viewbooking.ejs", { bookedRooms: bookedRooms, msg: "" })
+          res.render("admin/viewbooking.ejs", { bookedRooms: bookedRooms, msg: "The Bookings are : " })
         }
         else {
           res.render("admin/viewbooking.ejs", { bookedRooms: [], msg: "No Bookings available..." })
@@ -366,7 +366,7 @@ app.post("/forget-password", (req, res) => {
     from: process.env.USERNAME_O,
     to: req.body.username,
     subject: 'Reset password',
-    html: `<p>Click the button to reset the Password</p><br><form action="https://lamirage-240q.onrender.com/type-password" method="POST"><input type="hidden" name="email" value="${req.body.username}" id="email"/><button type="submit">Reset Password</button></form>`
+    html: `<p>Click the button to reset the Password</p><br><form action="${process.env.HOSTING_PORT}/type-password" method="POST"><input type="hidden" name="email" value="${req.body.username}" id="email"/><button type="submit">Reset Password</button></form>`
   };
 
   transporter.sendMail(mailOptions, function (error, info) {
@@ -466,7 +466,7 @@ app.post("/delete-room", (req, res, next) => {
             from: process.env.USERNAME_O,
             to: "akashdevelops@gmail.com",
             subject: 'Room deleted',
-            text: "Booking ID : " + new String(booked._id).toString() + "\n\nRoom Number :" + new String(booked.room_id).toString() + "\n\nAmount : " + new String(booked.amount).toString() + "\n\nCheck In Date : " + new String(new Date(booked.check_in_date)) + "\n\nCheck Out Date : " + new String(new Date(booked.check_out_date)) + "\n\nArrival Time :" + new String(booked.check_in_time) + "\n\nThe above booking is cancelled"
+            text: "Booking ID : " + new String(booked._id).toString() + "\n\nRoom Number : " + new String(booked.room_id).toString() + "\n\nAmount : " + new String(booked.amount).toString() + "\n\nCheck In Date : " + new String(new Date(booked.check_in_date)) + "\n\nCheck Out Date : " + new String(new Date(booked.check_out_date)) + "\n\nArrival Time : " + new String(booked.check_in_time) + "\n\nThe above booking is cancelled"
           };
 
           transporter.sendMail(mailOptions, function (error, info) {
@@ -669,7 +669,7 @@ app.post("/confirmation", (req, res, next) => {
         from: process.env.USERNAME_O,
         to: "akashdevelops@gmail.com",
         subject: 'Room Booked',
-        text: "Booking ID : " + new String(id).toString() + "\n\nRoom Number :" + new String(newBooking.room_id).toString() + "\n\nAmount : " + new String(newBooking.amount).toString() + "\n\nCheck In Date : " + new String(new Date(newBooking.check_in_date)) + "\n\nCheck Out Date : " + new String(new Date(newBooking.check_out_date)) + "\n\nArrival Time :" + new String(newBooking.check_in_time) + "\n\nThe above booking is done"
+        text: "Booking ID : " + new String(id).toString() + "\n\nRoom Number : " + new String(newBooking.room_id).toString() + "\n\nAmount : " + new String(newBooking.amount).toString() + "\n\nCheck In Date : " + new String(new Date(newBooking.check_in_date)) + "\n\nCheck Out Date : " + new String(new Date(newBooking.check_out_date)) + "\n\nArrival Time : " + new String(newBooking.check_in_time) + "\n\nThe above booking is done"
       };
 
       transporter.sendMail(mailOptions, function (error, info) {
@@ -728,7 +728,7 @@ app.post("/confirmation-hall", (req, res, next) => {
       from: process.env.USERNAME_O,
       to: "akashdevelops@gmail.com",
       subject: 'Hall Booked',
-      text: "Booking ID : " + new String(id).toString() + "\n\nHall type :" + new String(newBooking.room_id).toString() + "\n\nAmount : " + new String(newBooking.amount).toString() + "\n\nCheck In Date : " + new String(new Date(newBooking.check_in_date)) + "\n\nCheck Out Date : " + new String(new Date(newBooking.check_out_date)) + "\n\nArrival Time :" + new String(newBooking.check_in_time) + "\n\nThe above booking is done"
+      text: "Booking ID : " + new String(id).toString() + "\n\nHall type : " + new String(newBooking.room_id).toString() + "\n\nAmount : " + new String(newBooking.amount).toString() + "\n\nCheck In Date : " + new String(new Date(newBooking.check_in_date)) + "\n\nCheck Out Date : " + new String(new Date(newBooking.check_out_date)) + "\n\nArrival Time : " + new String(newBooking.check_in_time) + "\n\nThe above booking is done"
     };
 
     transporter.sendMail(mailOptions, function (error, info) {
@@ -922,12 +922,13 @@ app.get("/admin-viewbookings", (req, res, next) => {
     else {
       isAdmin = user.isAdmin
       if (req.isAuthenticated() && isAdmin) {
-        const date = new Date().toISOString();
+        const date1 = new Date()
+        const date = new Date(date1.valueOf() - 1000 * 60 * 60 * 24);
         try {
           const getBooks = async () => {
             const response = await Book.aggregate([
               {
-                $match: { check_in_date: date }
+                $match: { check_in_date: { $gte: date } }
               },
               {
                 $lookup: {
@@ -947,10 +948,10 @@ app.get("/admin-viewbookings", (req, res, next) => {
               }
             ])
             if ([...response].length !== 0) {
-              res.render("admin/viewbooking.ejs", { bookedRooms: response, msg: "" })
+              res.render("admin/viewbooking.ejs", { bookedRooms: response, msg: "The Current Bookings are : " })
             }
             else {
-              res.render("admin/viewbooking.ejs", { bookedRooms: [], msg: "No Bookings available today..." })
+              res.render("admin/viewbooking.ejs", { bookedRooms: [], msg: "No Current Bookings available..." })
             }
           }
           getBooks();
